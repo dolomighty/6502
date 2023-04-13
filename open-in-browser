@@ -1,0 +1,41 @@
+#!/bin/bash
+#$OUTERM && OUTERM=false exec xterm -e "$0"
+
+HERE=${PWD#*/}
+URL=http://127.0.0.1/${HERE#*/}
+THIS=`basename "$0"`
+BROWSER=${THIS##*-}
+
+[[ -n $1 ]] && URL=$URL/`basename $1`
+
+#read -p "$HERE $BROWSER $URL"
+notify-send -t 7000 $THIS -- "HERE $HERE
+BROWSER $BROWSER
+URL $URL"
+
+case $BROWSER in
+  firefox) exec firefox --new-window "$URL" ;;
+  chrome)  exec google-chrome --new-window "$URL" ;;
+  ie8)     WINEPREFIX=~/.wine32ie8 WINEARCH=win32 exec wine 'C:\Program Files\Internet Explorer\iexplore' "$URL" ;;
+  ie6)     WINEPREFIX=~/.wine32ie6 WINEARCH=win32 exec wine iexplore "$URL" ;;
+esac
+
+# per installare ie6/8 in wine:
+# WINEPREFIX=~/.wine32ie6 WINEARCH=win32 winetricks ie6
+# WINEPREFIX=~/.wine32ie8 WINEARCH=win32 winetricks ie8
+#
+# È NECESSARIO AVERE DUE ROOT DIVERSE
+# se da errori di files non trovati, cercarli in rete, modificare winetricks e riprovare
+#
+# poi installare i fonts ed attivare smoothing
+# WINEPREFIX=~/.wine32ie6 WINEARCH=win32 winetricks allfonts
+# WINEPREFIX=~/.wine32ie6 WINEARCH=win32 winetricks fontsmooth=gray
+# WINEPREFIX=~/.wine32ie8 WINEARCH=win32 winetricks allfonts
+# WINEPREFIX=~/.wine32ie8 WINEARCH=win32 winetricks fontsmooth=gray
+#
+# poi configurare DPI=144 per usare i fonts vettoriali
+# WINEPREFIX=~/.wine32ie6 WINEARCH=win32 winecfg
+# WINEPREFIX=~/.wine32ie8 WINEARCH=win32 winecfg
+#
+
+

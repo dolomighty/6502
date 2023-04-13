@@ -1,0 +1,76 @@
+#body{
+    background:#555;
+    color:white;
+    margin:10px 40px 10px 40px;
+    padding: 0px;
+}
+#out{  
+    margin:0px;
+    width:850px;
+    height:300px;
+    white-space:pre;
+    resize:none;
+}
+#src{
+    display:inline-block;
+    height:400px;
+    white-space:nowrap;
+    border:1px solid black;
+}
+#ln{
+    border-right:1px solid black;
+    margin:0px;
+    width:40px;
+    height:100%;
+    overflow:hidden;
+    resize:none;
+    color:black;
+    background:#CCC;
+    float:left;
+    white-space:pre;
+    font-family:monospace;
+    text-align:right;ace;
+    text-align:right;
+    padding-right:5px;
+    background:#468;
+    color:white;
+}
+#asm{
+    padding-left:5px;
+    margin:0px;
+    border:none;
+    width:800px;
+    height:100%;
+    resize:none;
+    white-space:pre;
+    font-family:monospace;
+    background:#89F;
+}
+#mem_wr_hgram{
+    width:500px;
+    height:200px;
+}
+#PC,#A,#X,#Y,#cy{
+    font-family:monospace;
+}
+#peri_display_outer{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    -display:none;
+}
+#peri_display{
+    border:5px solid silver;
+    border-radius:5px;
+    background:black;
+}
+#peri_tek_outer{
+    position:fixed;
+    top:10px;
+    right:10px;
+}
+#peri_tek{
+    border:5px solid silver;
+    border-radius:5px;
+    background:black;
+}
