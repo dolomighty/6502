@@ -380,8 +380,8 @@ cat -- *extern*.js >> $EXT    2> /dev/null
 echo '
 #define EXTERN_FUNCTION(NAME) NAME = function
 #define DEFINED(WHAT) ("undefined" != typeof WHAT)
-#define LOG(...)
-#define DBG(...) {window.console && console.log(__VA_ARGS__)}
+#define LOG(...) {window.console && console.log(__VA_ARGS__)}
+#define DBG(...) 
 #define ASSERT(WHAT)
 #define NOFAIL(...) try{__VA_ARGS__}catch(e){}
 #define GCC

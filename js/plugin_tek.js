@@ -43,23 +43,24 @@ function plugin_tek(){
 
     T.exec = function( cmd ){
         switch(cmd){
-            case 0x00: T.clear(); break
-            case 0x01: T.xy = T.xy_from_regs(); break
-            case 0x02: T.lineto(T.xy_from_regs()); break
-            case 0x03: T.range(T.xy_from_regs()); break
+            case 0x00: T.clear();            break
+            case 0x01: T.xy=T.xy_dev();      break // move
+            case 0x02: T.lineto(T.xy_dev()); break
+//            case 0x03: T.bl=T.xy_dev();      break    // set viewport bottom-left
+//            case 0x04: T.range(T.xy_dev());  break    // set viewport top-right
         }
     }
+
 
     T.clear = function(){
         T.context.reset()
         T.context.fillStyle="rgb(0,40,20)"
         T.context.fillRect( 0, 0, T.wh[0], T.wh[1])
         T.context.strokeStyle="rgb(0,255,100)"
-        T.context.lineWidth=300
+        T.context.lineWidth=1.5
         T.context.translate( T.wh[0]/2, T.wh[1]/2 ) // origine al centro
-        var s = T.wh[1]/64000.0 // fullscreen +-32000 x→ y↑
-        T.context.scale( +s, -s ) 
     }
+
 
     T.xy_from_regs = function(){
         var x_u16 = (T.reg_x[1]<<8)|(T.reg_x[0]<<0)
@@ -69,12 +70,18 @@ function plugin_tek(){
         return [ x, -y ]
     }
 
+
+    T.xy_dev = function(){
+        var xy = T.xy_from_regs()
+        var s = T.wh[1]/2
+        return [xy[0]*s,xy[1]*s]
+    }
+
     T.lineto = function(xy){
-        LOG(xy)
         T.context.beginPath()
-        T.context.moveTo( T.xy[0], T.xy[1])
+        T.context.moveTo(T.xy[0],T.xy[1])
         T.xy = xy
-        T.context.lineTo( T.xy[0], T.xy[1])
+        T.context.lineTo(T.xy[0],T.xy[1])
         T.context.stroke()
     }
 
@@ -100,13 +107,13 @@ function plugin_tek(){
 
     draggable($("peri_tek_outer"))
 
-    T.birand = function( range ){
-        var one = Math.random()*2-1
-        return one*range
-    }
-
     T.clear()
-//    for( var i=100; i>0; i-- ) T.lineto([T.birand(32000),T.birand(32000)])
+
+//    function birand( range ){
+//        var one = Math.random()*2-1
+//        return one*range
+//    }
+//    for( var i=100; i>0; i-- ) T.lineto([birand(T.wh[1]/2),birand(T.wh[1]/2)])
 
     // tutto ok, aggiungiamoci ai plugins
     GLOBAL(plugins).tek = T
