@@ -44,14 +44,21 @@ function plugin_tek(){
     T.exec = function( cmd ){
         switch(cmd){
             case 0x00: T.clear(); break
-            case 0x01: T.move(); break
-            case 0x02: T.line(); break
+            case 0x01: T.xy = T.xy_from_regs(); break
+            case 0x02: T.lineto(T.xy_from_regs()); break
+            case 0x03: T.range(T.xy_from_regs()); break
         }
     }
 
     T.clear = function(){
-        T.context.fillStyle="rgb(0,10,5)"
+        T.context.reset()
+        T.context.fillStyle="rgb(0,40,20)"
         T.context.fillRect( 0, 0, T.wh[0], T.wh[1])
+        T.context.strokeStyle="rgb(0,255,100)"
+        T.context.lineWidth=300
+        T.context.translate( T.wh[0]/2, T.wh[1]/2 ) // origine al centro
+        var s = T.wh[1]/64000.0 // fullscreen +-32000 x→ y↑
+        T.context.scale( +s, -s ) 
     }
 
     T.xy_from_regs = function(){
@@ -62,25 +69,20 @@ function plugin_tek(){
         return [ x, -y ]
     }
 
-    T.move = function(){
-        T.xy = T.xy_from_regs()
-    }
-
-    T.line = function(){
-        T.context.strokeStyle="rgb(0,255,50)"
+    T.lineto = function(xy){
+        LOG(xy)
         T.context.beginPath()
         T.context.moveTo( T.xy[0], T.xy[1])
-        T.xy = T.xy_from_regs()
+        T.xy = xy
         T.context.lineTo( T.xy[0], T.xy[1])
         T.context.stroke()
     }
 
 
-
     // INIT
     // l'inizializzazione va a buon fine, oppure fallisce terminando lo script
 
-    T.base_addr = 0x8200
+    T.base_addr = 0x8400
     T.wh = [400,300]
     T.xy = [0,0]
     T.reg_x = [0,0]
@@ -96,8 +98,15 @@ function plugin_tek(){
     div.style.height = canvas.height+"px"
     div.appendChild(canvas)
 
-    T.clear()
     draggable($("peri_tek_outer"))
+
+    T.birand = function( range ){
+        var one = Math.random()*2-1
+        return one*range
+    }
+
+    T.clear()
+//    for( var i=100; i>0; i-- ) T.lineto([T.birand(32000),T.birand(32000)])
 
     // tutto ok, aggiungiamoci ai plugins
     GLOBAL(plugins).tek = T
