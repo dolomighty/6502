@@ -1,7 +1,7 @@
 
 function gui_start(){
     $("assembla").addEventListener("click",assembla)
-    $("ex").addEventListener("change",carica_esempio)
+    $("ex").addEventListener("change",load_ex)
     setInterval(function(){
         var a = 0xff & GLOBAL(cpu6502).regA
         var x = 0xff & GLOBAL(cpu6502).regX

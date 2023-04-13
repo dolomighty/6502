@@ -1,5 +1,5 @@
 
-function carica_esempio(){
+function load_ex(){
     var e = $("ex")
     if(e.value<0)return
     var xhr = new_xhr()
