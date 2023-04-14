@@ -15,7 +15,7 @@
 <body id=body>
 <div>
 ispirato da 6502asm.com<br>
-- compila con acme lato server <a target=_blank href=https://sourceforge.net/p/acme-crossass/code-0/6/tree/trunk/docs/AllPOs.txt>quickref</a><br>
+- compila con <a target=_blank href=https://sourceforge.net/p/acme-crossass/code-0/6/tree/trunk/docs/AllPOs.txt>acme</a>/cc65/tass lato server <br>
 - passa il binario al browser che lo interpreta via js<br>
 - le periferiche sono plugins js<br>
 - gli opcodes sono switchati da un'array di funzioni<br>
@@ -35,17 +35,17 @@ foreach(glob("es/*") as $k => $fn){
   echo @file_get_contents("tmp/asm.s");
 ?></textarea></div>
 <br>
-<button id=assembla>assembla</button>
-<br>
+<button id=assembla>assembla</button><br>
 <br>
 out+err
 <button onclick="$('out').value=''">cancella</button>
 <br>
-<div id=out_div><textarea id=out readonly></textarea></div>
+<div id=out_div>
+  <textarea id=out readonly></textarea>
+</div>
 <br>
-<br>
-<div>
-  <button onclick="R(0)" title=stop>⏹</button>
+<div id=cpu>
+  <button onclick="R(0)" title=stop>◼</button>
   <button onclick="R(1)" title="1 opcode/sec">▶</button>
   <button onclick="R(10)" title="10 opcodes/sec">▶▶</button>
   <button onclick="R(100)" title="100 opcodes/sec">▶▶▶</button>
@@ -71,12 +71,12 @@ out+err
   </table>
 </div>
 <br>
-</div>
-<br>
 <div id=peri_display_outer>
+  <div><span class=green>&bullet;</span>Raster Display</div>
   <div id=peri_display></div>
 </div>
 <div id=peri_tek_outer>
+  <div><span class=green>&bullet;</span>Vector Storage Tube Display</div>
   <div id=peri_tek></div>
 </div>
 <br>
