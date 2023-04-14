@@ -20,6 +20,7 @@
     }
 
 
+    mkdir("tmp");
     foreach(glob("tmp/*") as $fn) unlink($fn);
     file_put_contents("tmp/asm.s",$asm) or fail(__LINE__);
     # 2018-01-29 14:51:14 se da errore ↑↑↑ 
@@ -41,8 +42,12 @@
     }
     stdout_wr(["using $assembler assembler"]);
 
-    if($assembler=="cc65") exec("export CC65_HOME=/usr/share/cc65 && cd tmp && cl65 -t none -o main.o asm.s 2>&1",$out,$err);
-    if($assembler=="acme") exec("cd tmp && ../acme -v9 --use-stdout -l lst -o bin asm.s",$out,$err);
+    if($assembler== "64tass" ) $cli = "64tass asm.s";
+    if($assembler== "cc65"   ) $cli = "cl65 -t none -o main.o asm.s";
+    if($assembler== "acme"   ) $cli = "acme -v9 --use-stdout -l lst -o bin asm.s";
+
+    exec("cd tmp && $cli",$out,$err);
+
     if($err){
         $mat=preg_grep("/Error.*line/",$out);
         $line = array_pop(array_reverse($mat));
