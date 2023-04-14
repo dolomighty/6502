@@ -1,26 +1,28 @@
 <?php
 
-    function fail( $line ){
-        die("SO([".json_encode("!".basename(__FILE__).":$line")."])\n");
-    }
-
-    array_key_exists("asm",$_POST) or fail(__LINE__);
-    $asm = $_POST["asm"] or fail(__LINE__);
-#  $asm = base64_decode($asm) or fail(__LINE__);
-
-#  stdout_wr(["sorgente *$asm* bytes"]);
-    stdout_wr(["sorgente ".strlen($asm)." bytes"]);
-    
     function stdout_wr( $lines ){
         echo "SO(".json_encode($lines).")\n";
     }
 
+    function fail( $line ){
+        stdout_wr(["!".basename(__FILE__).":$line"]);
+        die();
+    }
+
+
+
+    array_key_exists("asm",$_POST) or fail(__LINE__);
+    $asm = $_POST["asm"] or fail(__LINE__);
+#    $asm = base64_decode($asm) or fail(__LINE__);
+
+#    stdout_wr(["sorgente *$asm* bytes"]);
+    stdout_wr(["sorgente ".strlen($asm)." bytes"]);
+    
     function image( $bin ){
         echo "I('".base64_encode($bin)."')\n";
     }
 
 
-    mkdir("tmp");
     foreach(glob("tmp/*") as $fn) unlink($fn);
     file_put_contents("tmp/asm.s",$asm) or fail(__LINE__);
     # 2018-01-29 14:51:14 se da errore ↑↑↑ 
