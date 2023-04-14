@@ -11,8 +11,9 @@ function draggable(id) {
 
     id.onmousedown = dragMouseDown
 
-    function dragMouseDown(e) {
+    function dragMouseDown(e){
         e = e || window.event
+//        if(e.button!=1)return true  // tasto centrale per spostare
         e.preventDefault()
         // get the mouse cursor position at startup:
         pos3 = e.clientX
