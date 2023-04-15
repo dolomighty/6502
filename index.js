@@ -288,6 +288,7 @@ function flag_overflow( opt_set ){
 function gui_start(){
     $("assembla").addEventListener("click",assembla)
     $("ex").addEventListener("change",load_ex)
+    draggable($("cpu"))
     setInterval(function(){
         var a = 0xff & g_cpu6502.regA
         var x = 0xff & g_cpu6502.regX

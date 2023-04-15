@@ -1,3 +1,4 @@
+
 #body{
     background:#555;
     color:white;
@@ -15,13 +16,13 @@ textarea{
 
 #editor{
     position:fixed;
-    top:10px;
+    top:200px;
     left:10px;
     width: min-content;
     height: min-content;
-    border:5px solid silver;
+    border:5px solid #89F;
     border-radius:5px;
-    background:silver;
+    background:#89F;
     color:black;
 }
 
@@ -43,7 +44,6 @@ textarea{
     float:left;
     white-space:pre;
     font-family:monospace;
-    text-align:right;ace;
     text-align:right;
     padding-right:5px;
     background:#468;
@@ -58,7 +58,7 @@ textarea{
     resize:none;
     white-space:pre;
     font-family:monospace;
-    background:#89F;
+    background:white;
 }
 
 
@@ -67,6 +67,8 @@ textarea{
 #mem_wr_hgram{
     width:500px;
     height:200px;
+    border:1px solid black;
+    resize:none;
 }
 #PC,#A,#X,#Y,#cy{
     font-family:monospace;
@@ -102,10 +104,6 @@ textarea{
 #peri_tek_outer > div:first-of-type {
     border-bottom:5px solid silver;
 }
-span.green{
-    padding: 0px 5px;
-    color:red;
-}
 
 #cpu{
     position:fixed;
@@ -125,9 +123,9 @@ span.green{
     left:10px;
     width: min-content;
     height: min-content;
-    border:5px solid silver;
+    border:5px solid lightgreen;
     border-radius:5px;
-    background:silver;
+    background:lightgreen;
     color:black;
 }
 
@@ -137,4 +135,5 @@ span.green{
     height:300px;
     white-space:pre;
     resize:none;
+    border:1px solid black;
 }

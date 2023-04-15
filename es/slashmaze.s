@@ -10,7 +10,7 @@ prng_seed:
 
 slash:
 !text '/'
-!text '\'
+!text '\\'
 
 *=$200
 
