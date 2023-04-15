@@ -4,13 +4,6 @@
     margin:10px 40px 10px 40px;
     padding: 0px;
 }
-#out{  
-    margin:0px;
-    width:850px;
-    height:300px;
-    white-space:pre;
-    resize:none;
-}
 
 textarea{
     padding:0px;
@@ -126,3 +119,22 @@ span.green{
     color:black;
 }
 
+#stdout{
+    position:fixed;
+    bottom:10px;
+    left:10px;
+    width: min-content;
+    height: min-content;
+    border:5px solid silver;
+    border-radius:5px;
+    background:silver;
+    color:black;
+}
+
+#out{  
+    margin:0px;
+    width:850px;
+    height:300px;
+    white-space:pre;
+    resize:none;
+}

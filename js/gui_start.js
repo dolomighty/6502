@@ -2,8 +2,8 @@
 function gui_start(){
     $("assembla").addEventListener("click",assembla)
     $("ex").addEventListener("change",load_ex)
-    draggable($("cpu"))
-    draggable($("editor"))
+//    draggable($("cpu"))
+//    draggable($("editor"))
     setInterval(function(){
         var a = 0xff & GLOBAL(cpu6502).regA
         var x = 0xff & GLOBAL(cpu6502).regX

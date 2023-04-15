@@ -68,18 +68,7 @@
     exec("hexdump -C tmp/bin",$out);
     stdout_wr($out);
 
-#  # 2018-01-13 21:11:56
-#  # dal lst troviamo l'indirizzo di main
-#  $lst = file("tmp/lst") or fail(__LINE__);
-#  $mat = preg_grep("/main.*=/",$lst) or fail(__LINE__);
-#  $line = array_pop(array_reverse($mat)) or fail(__LINE__);
-#  $line = preg_replace('/.*\$/',"",$line) or fail(__LINE__);
-#  $main_adrs = hexdec($line);
-#  stdout_wr(["main @ $".dechex($main_adrs)]);
-#  image(file_get_contents("tmp/bin"),$main_adrs);
-
-    # 2018-01-13 23:06:01
-    # tuttavia il 6502 al reset legge $FFFE e salta lì
+    # il 6502 al reset legge $FFFE e salta lì
     # quindi non serve indicare l'entry point
     image(file_get_contents("tmp/bin"));
 ?>
