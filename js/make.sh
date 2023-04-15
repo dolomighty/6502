@@ -569,3 +569,16 @@ migliorate alcune regex/estrazioni
 aggiunto make.sh, per compilare da cli senza make loop
 non interattiva, insomma
 
+2023-01-26 14:43:38
+bugfix vars globali (mancava g_)
+
+2023-01-26 19:00:02
+LOG ora logga sempre
+DBG solo in plain (in gclosure no)
+
+2023-04-15 13:17:49
+file da ignorare ora si indicano con ~*
+recupero file migliorato, vedi FIND
+
+
+
