@@ -88,10 +88,18 @@ function plugin_tek(){
     }
 
     T.lineto = function(xy){
-        T.context.beginPath()
-        T.context.moveTo(T.xy[0],T.xy[1])
+        var from = T.xy
         T.xy = xy
-        T.context.lineTo(T.xy[0],T.xy[1])
+        var to = T.xy
+
+        const gradient = T.context.createLinearGradient( from[0], from[1], to[0], to[1])
+        gradient.addColorStop(0, "green")
+        gradient.addColorStop(1, "white")
+        T.context.strokeStyle = gradient
+
+        T.context.beginPath()
+        T.context.moveTo(from[0],from[1])
+        T.context.lineTo(to[0],to[1])
         T.context.stroke()
     }
 
@@ -116,6 +124,18 @@ function plugin_tek(){
     div.style.width  = canvas.width+"px"
     div.style.height = canvas.height+"px"
     div.appendChild(canvas)
+
+    // - si disegna la linea persistente in offscreen
+    // ad ogni frame poi:
+    // - si copia l'offscreen sul canvas visibile
+    // - si sovrappone sul visibile il tracer
+    //   abbassando ogni frame l'intensità per avere un fadedout
+    //
+    // alternativamente si può effettivamente muovere un punto luminoso lungo la linea
+    // a velocità costante, e mano a mano si lascia traccia nel canvas offscreen
+    //
+    const offscreen = new OffscreenCanvas(T.wh[0],T.wh[1])
+    T.offscreen = canvas.getContext("2d")
 
     T.clear()
 

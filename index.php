@@ -9,7 +9,7 @@
 <?php require("style.css"); ?>
 </style>
 <script>
-<?php include("index.js"); ?>
+<?php require("index.js"); ?>
 </script>
 </head>
 <body id=body>
@@ -26,7 +26,7 @@ ispirato da 6502asm.com<br>
   <div class=handle>
     sorgente
     <button id=assembla>assembla</button>
-     <select id=ex>
+    <select id=ex>
       <option value="-1">carica esempio</option>
       <?php
         foreach(glob("es/*") as $k => $fn){
@@ -57,7 +57,7 @@ ispirato da 6502asm.com<br>
 </div>
 
 <div id=cpu class=draggable>
-  cpu
+  CPU
   <button onclick="R(0)" title=stop>◼</button>
   <button onclick="R(1)" title="1 opcode/sec">▶</button>
   <button onclick="R(10)" title="10 opcodes/sec">▶▶</button>
@@ -67,20 +67,20 @@ ispirato da 6502asm.com<br>
   <button onclick="R(100000)" title="100 opcodes/msec">▶⁶</button>
   <button onclick="R(1000000)" title="1 opcodes/µsec≈1MHz">▶⁷</button>
   <table width=100%>
-  <tr>
-  <td valign=top width=300>
-  <table cellspacing=0 cellpadding=0>
-  <tr><td>ciclo</td><td><input type=text id=cy readonly></td></tr>
-  <tr><td>PC</td><td><input type=text id=PC readonly></td></tr>
-  <tr><td>A </td><td><input type=text id=A readonly></td></tr>
-  <tr><td>X </td><td><input type=text id=X readonly></td></tr>
-  <tr><td>Y </td><td><input type=text id=Y readonly></td></tr>
-  </table>
-  </td>
-  <td>
-  <textarea id=mem_wr_hgram readonly></textarea>
-  </td>
-  </tr>
+    <tr>
+      <td valign=top width=300>
+        <table cellspacing=0 cellpadding=0>
+          <tr><td>ciclo</td><td><input type=text id=cy readonly></td></tr>
+          <tr><td>PC</td><td><input type=text id=PC readonly></td></tr>
+          <tr><td>A</td><td><input type=text id=A readonly></td></tr>
+          <tr><td>X</td><td><input type=text id=X readonly></td></tr>
+          <tr><td>Y</td><td><input type=text id=Y readonly></td></tr>
+        </table>
+      </td>
+      <td>
+        <textarea id=mem_wr_hgram readonly></textarea>
+      </td>
+    </tr>
   </table>
 </div>
 

@@ -236,8 +236,8 @@ function testSBC( value ){
         }
     }
     GLOBAL(cpu6502).regA = w & 0xff;
-    if( GLOBAL(cpu6502).regA ) GLOBAL(cpu6502).regP &= 0xfd; else GLOBAL(cpu6502).regP |= 0x02;
-    if( GLOBAL(cpu6502).regA & 0x80 ) GLOBAL(cpu6502).regP |= 0x80; else GLOBAL(cpu6502).regP &= 0x7f;
+    flag_zero(GLOBAL(cpu6502).regA==0)
+    flag_sign(GLOBAL(cpu6502).regA&0x80)
 }
 
 function testADC( value ){
@@ -273,8 +273,8 @@ function testADC( value ){
         }
     }
     GLOBAL(cpu6502).regA = tmp & 0xff;
-    if( GLOBAL(cpu6502).regA ) GLOBAL(cpu6502).regP &= 0xfd; else GLOBAL(cpu6502).regP |= 0x02;
-    if( GLOBAL(cpu6502).regA & 0x80 ) GLOBAL(cpu6502).regP |= 0x80; else GLOBAL(cpu6502).regP &= 0x7f;
+    flag_zero(GLOBAL(cpu6502).regA==0)
+    flag_sign(GLOBAL(cpu6502).regA&0x80)
 }
 
 

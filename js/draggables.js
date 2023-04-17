@@ -14,7 +14,7 @@ function draggable(container,handles){
         container.onmousedown = dragMouseDown  
     }
 
-    for( var i in handles ){
+    for( var i=0; i<handles.length; i++ ){
         var div = handles[i]
         div.onmousedown = dragMouseDown
     }
@@ -57,7 +57,7 @@ function draggables_init(){
     for( var container of els ){
         var handles=[]
         const children = container.childNodes
-        for( var i in children ){
+        for( var i=0; i<children.length; i++ ){
             var handle = children[i]
             if(!handle.className)continue
             if(!handle.className.match(/handle/))continue
