@@ -1415,9 +1415,9 @@ function plugin_tek(){
         switch(reg){
             case 0x00: T.exec(value); break
             case 0x02: T.reg_x[0]=value; break
-            case 0x03: T.reg_x[1]=value; break
+            case 0x03: T.reg_x[1]=value; T.after_hi_x(); break
             case 0x04: T.reg_y[0]=value; break
-            case 0x05: T.reg_y[1]=value; break
+            case 0x05: T.reg_y[1]=value; T.after_hi_y(); break
         }
         return 0
     }
@@ -1426,6 +1426,16 @@ function plugin_tek(){
             case 0x00: T.clear(); break
             case 0x01: T.xy=T.xy_dev(); break
             case 0x02: T.lineto(T.xy_dev()); break
+            case 0x10:
+                T.after_hi_x = function(){}
+                T.after_hi_y = function(){}
+                break
+            case 0x11:
+                T.after_hi_x = function(){T.lineto(T.xy_dev())}
+                break
+            case 0x12:
+                T.after_hi_y = function(){T.lineto(T.xy_dev())}
+                break
         }
     }
     T.clear = function(){
@@ -1460,6 +1470,8 @@ function plugin_tek(){
     T.xy = [0,0]
     T.reg_x = [0,0]
     T.reg_y = [0,0]
+    T.after_hi_x = function(){}
+    T.after_hi_y = function(){}
     var canvas = document.createElement("canvas")
     canvas.width = T.wh[0]
     canvas.height = T.wh[1]

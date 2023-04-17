@@ -4,8 +4,8 @@ STDOUT=$1000
 TEK_EXEC=$8400
 TEK_X=TEK_EXEC+$02
 TEK_Y=TEK_EXEC+$04
-TEK_LINE=$02
-
+TEK_CLEAR=$00
+TEK_LINE_ON_Y=$12
 
 *=$0
 
@@ -18,6 +18,12 @@ prng_seed:
 
 main:
 
+  lda   #TEK_CLEAR
+  sta   TEK_EXEC
+  lda   #TEK_LINE_ON_Y
+  sta   TEK_EXEC
+
+  ldy   100
 
 loop:
 
@@ -29,10 +35,9 @@ loop:
   jsr   prng
   sta   TEK_Y+1
 
-  lda   #TEK_LINE
-  sta   TEK_EXEC
-
-  jmp   loop
+  dey
+  bne   loop
+  jmp   main
 
 
 
