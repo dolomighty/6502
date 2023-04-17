@@ -210,33 +210,51 @@ function cpu6502_execute(){
     g_cpu6502.clock_enable = 0
     message( "HALT - unknown opcode $"+hex8(opcode)+" @ $" + hex16(g_cpu6502.regPC))
 }
-function draggable(id) {
-    var pos1 = 0
-    var pos2 = 0
-    var pos3 = 0
-    var pos4 = 0
-    id.onmousedown = dragMouseDown
-    function dragMouseDown(e){
-        e = e || window.event
-        e.preventDefault()
-        pos3 = e.clientX
-        pos4 = e.clientY
+function draggable(container,handles){
+    var xy_start = [0,0]
+    if(!handles.length){
+        container.onmousedown = dragMouseDown
+    }
+    for( var i in handles ){
+        var div = handles[i]
+        div.onmousedown = dragMouseDown
+    }
+    function dragMouseDown(mev){
+        mev = mev || window.event
+        mev.preventDefault()
+        xy_start[0] = mev.clientX
+        xy_start[1] = mev.clientY
         document.onmouseup = closeDragElement
         document.onmousemove = elementDrag
     }
-    function elementDrag(e) {
-        e = e || window.event
-        e.preventDefault()
-        pos1 = pos3 - e.clientX
-        pos2 = pos4 - e.clientY
-        pos3 = e.clientX
-        pos4 = e.clientY
-        id.style.top = (id.offsetTop - pos2) + "px"
-        id.style.left = (id.offsetLeft - pos1) + "px"
+    function elementDrag(mev){
+        mev = mev || window.event
+        mev.preventDefault()
+        var xy=[]
+        xy[0] = xy_start[0] - mev.clientX
+        xy[1] = xy_start[1] - mev.clientY
+        xy_start[0] = mev.clientX
+        xy_start[1] = mev.clientY
+        container.style.top = (container.offsetTop - xy[1]) + "px"
+        container.style.left = (container.offsetLeft - xy[0]) + "px"
     }
-    function closeDragElement() {
+    function closeDragElement(){
         document.onmouseup = null
         document.onmousemove = null
+    }
+}
+function draggables_init(){
+    const els = document.querySelectorAll("div.draggable")
+    for( var container of els ){
+        var handles=[]
+        const children = container.childNodes
+        for( var i in children ){
+            var handle = children[i]
+            if(!handle.className)continue
+            if(!handle.className.match(/handle/))continue
+            handles.push(handle)
+        }
+        draggable(container,handles)
     }
 }
 function exec_start() {
@@ -288,7 +306,7 @@ function flag_overflow( opt_set ){
 function gui_start(){
     $("assembla").addEventListener("click",assembla)
     $("ex").addEventListener("change",load_ex)
-    draggable($("cpu"))
+    draggables_init()
     setInterval(function(){
         var a = 0xff & g_cpu6502.regA
         var x = 0xff & g_cpu6502.regX
@@ -1260,7 +1278,6 @@ function plugin_display(){
     div.style.width = canvas.width+"px"
     div.style.height = canvas.height+"px"
     div.appendChild(canvas)
-    draggable($("peri_display_outer"))
     g_plugins.display = T
 }
 function plugin_MAC(){
@@ -1451,7 +1468,6 @@ function plugin_tek(){
     div.style.width = canvas.width+"px"
     div.style.height = canvas.height+"px"
     div.appendChild(canvas)
-    draggable($("peri_tek_outer"))
     T.clear()
     g_plugins.tek = T
 }

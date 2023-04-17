@@ -86,9 +86,6 @@ function plugin_display(){
     div.style.height = canvas.height+"px"
     div.appendChild(canvas)
 
-    
-    draggable($("peri_display_outer"))
-
     // tutto ok, aggiungiamoci ai plugins
     GLOBAL(plugins).display = T
 }

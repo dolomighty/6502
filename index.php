@@ -22,20 +22,18 @@ ispirato da 6502asm.com<br>
 - gli opcodes sono switchati da un'array di funzioni<br>
 </div>
 
-<div id=editor>
-  <div>
-      sorgente
-      <button id=assembla>assembla</button>
-       <select id=ex>
-        <option value="-1">carica esempio</option>
-        <?php
-          foreach(glob("es/*") as $k => $fn){
-            echo "<option value=$k>".basename($fn)."</option>";
-          }
-        ?>
-      </select>
-    </span>
-    </span>
+<div id=editor class=draggable>
+  <div class=handle>
+    sorgente
+    <button id=assembla>assembla</button>
+     <select id=ex>
+      <option value="-1">carica esempio</option>
+      <?php
+        foreach(glob("es/*") as $k => $fn){
+          echo "<option value=$k>".basename($fn)."</option>";
+        }
+      ?>
+    </select>
   </div>
   <div id=src>
     <div id=ln>
@@ -48,16 +46,18 @@ ispirato da 6502asm.com<br>
   </div>
 </div>
 
-<div id=stdout>
-  stdout
-  <button onclick="$('out').value=''">cancella</button>
-  <br>
+<div id=stdout class=draggable>
+  <div class=handle>
+    stdout
+    <button onclick="$('out').value=''">cancella</button>
+  </div>
   <div id=out_div>
     <textarea id=out readonly></textarea>
   </div>
 </div>
 
-<div id=cpu>
+<div id=cpu class=draggable>
+  cpu
   <button onclick="R(0)" title=stop>◼</button>
   <button onclick="R(1)" title="1 opcode/sec">▶</button>
   <button onclick="R(10)" title="10 opcodes/sec">▶▶</button>
@@ -84,12 +84,12 @@ ispirato da 6502asm.com<br>
   </table>
 </div>
 
-<div id=peri_display_outer>
+<div id=peri_display_outer class=draggable>
   <div>Raster Display</div>
   <div id=peri_display></div>
 </div>
 
-<div id=peri_tek_outer>
+<div id=peri_tek_outer class=draggable>
   <div>Vector Storage Tube Display</div>
   <div id=peri_tek></div>
 </div>

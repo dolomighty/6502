@@ -105,8 +105,6 @@ function plugin_tek(){
     div.style.height = canvas.height+"px"
     div.appendChild(canvas)
 
-    draggable($("peri_tek_outer"))
-
     T.clear()
 
 //    function birand( range ){
