@@ -1,6 +1,6 @@
 
 
-function plugin_display(){
+function plugin_raster(){
 
     var T = {}
 

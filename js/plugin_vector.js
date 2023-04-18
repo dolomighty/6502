@@ -10,7 +10,7 @@ display vettoriale stile tek 4k
 */
 
 
-function plugin_tek(){
+function plugin_vector(){
 
     var T = {}
 

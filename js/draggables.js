@@ -5,9 +5,6 @@ function draggable(container,handles){
     // adattato da
     // https://www.w3schools.com/howto/howto_js_draggable.asp
 
-    // es.
-    // draggable(document.getElementById("mydiv"))
-
     var xy_start = [0,0]
 
     if(!handles.length){

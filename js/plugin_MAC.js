@@ -16,7 +16,7 @@ function plugin_MAC(){
 
     T.wr = function(addr,value){
 
-        var reg = addr - T.base_address
+        var reg = addr - T.base_addr
         if(reg<0x00)return "x"
         if(reg>0xFF)return "x"
 
@@ -68,13 +68,13 @@ function plugin_MAC(){
 
     T.rd = function(addr){
 
-        var reg = addr - T.base_address
+        var reg = addr - T.base_addr
         if(reg<0x00)return "x"
         if(reg>0xFF)return "x"
 
         DBG("peri_MAC working "+(GLOBAL(cpu6502).cycle < T.deadline))
 
-        if( GLOBAL(cpu6502).cycle < T.deadline )return cpu6502_mem_wr(T.base_address+0xFF,0)  // 0=calcoli in corso
+        if( GLOBAL(cpu6502).cycle < T.deadline )return cpu6502_mem_wr(T.base_addr+0xFF,0)  // 0=calcoli in corso
 
         DBG("peri_MAC.c "+T.c)
 
@@ -109,7 +109,7 @@ function plugin_MAC(){
     // INIT
     // l'inizializzazione va a buon fine, oppure fallisce terminando lo script
 
-    T.base_address = 0x8200
+    T.base_addr = 0x8200
     T.a = 0
     T.b = 0
     T.c = 0
