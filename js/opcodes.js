@@ -548,15 +548,15 @@ opcodes_cb[0x81] = function(){ // STA INDX
 }
 
 opcodes_cb[0x84] = function(){ // STY ZP
-    mem_wr( fetch_byte(), GLOBAL(cpu6502).regY );
+    mem_wr(fetch_byte(), GLOBAL(cpu6502).regY );
 }
 
 opcodes_cb[0x85] = function(){ // STA ZP
-    mem_wr( fetch_byte(), GLOBAL(cpu6502).regA );
+    mem_wr(fetch_byte(), GLOBAL(cpu6502).regA );
 }
 
 opcodes_cb[0x86] = function(){ // STX ZP
-    mem_wr( fetch_byte(), GLOBAL(cpu6502).regX );
+    mem_wr(fetch_byte(), GLOBAL(cpu6502).regX );
 }
 
 opcodes_cb[0x88] = function(){ // DEY (1 byte)
@@ -598,15 +598,15 @@ opcodes_cb[0x91] = function(){ // STA INDY
 }
 
 opcodes_cb[0x94] = function(){ // STY ZPX
-    mem_wr( fetch_byte() + GLOBAL(cpu6502).regX, GLOBAL(cpu6502).regY );
+    mem_wr(fetch_byte() + GLOBAL(cpu6502).regX, GLOBAL(cpu6502).regY );
 }
 
 opcodes_cb[0x95] = function(){ // STA ZPX
-    mem_wr( fetch_byte() + GLOBAL(cpu6502).regX, GLOBAL(cpu6502).regA );
+    mem_wr(fetch_byte() + GLOBAL(cpu6502).regX, GLOBAL(cpu6502).regA );
 }
 
 opcodes_cb[0x96] = function(){ // STX ZPY
-    mem_wr( fetch_byte() + GLOBAL(cpu6502).regY, GLOBAL(cpu6502).regX );
+    mem_wr(fetch_byte() + GLOBAL(cpu6502).regY, GLOBAL(cpu6502).regX );
 }
 
 opcodes_cb[0x98] = function(){ // TYA
@@ -648,19 +648,19 @@ opcodes_cb[0xa2] = function(){ // LDX IMM
 }
 
 opcodes_cb[0xa4] = function(){ // LDY ZP
-    GLOBAL(cpu6502).regY = mem_rd( fetch_byte() );
+    GLOBAL(cpu6502).regY = mem_rd(fetch_byte());
     flag_zero(GLOBAL(cpu6502).regY==0)
     flag_sign(GLOBAL(cpu6502).regY&0x80)
 }
 
 opcodes_cb[0xa5] = function(){ // LDA ZP
-    GLOBAL(cpu6502).regA = mem_rd( fetch_byte() );
+    GLOBAL(cpu6502).regA = mem_rd(fetch_byte());
     flag_zero(GLOBAL(cpu6502).regA==0)
     flag_sign(GLOBAL(cpu6502).regA&0x80)
 }
 
 opcodes_cb[0xa6] = function(){ // LDX ZP
-    GLOBAL(cpu6502).regX = mem_rd( fetch_byte() );
+    GLOBAL(cpu6502).regX = mem_rd(fetch_byte());
     flag_zero(GLOBAL(cpu6502).regX==0)
     flag_sign(GLOBAL(cpu6502).regX&0x80)
 }
@@ -715,7 +715,7 @@ opcodes_cb[0xb1] = function(){ // LDA INDY
 }
 
 opcodes_cb[0xb4] = function(){ // LDY ZPX
-    GLOBAL(cpu6502).regY = mem_rd( fetch_byte() + GLOBAL(cpu6502).regX );
+    GLOBAL(cpu6502).regY = mem_rd(fetch_byte() + GLOBAL(cpu6502).regX );
     flag_zero(GLOBAL(cpu6502).regY==0)
     flag_sign(GLOBAL(cpu6502).regY&0x80)
 }
@@ -727,7 +727,7 @@ opcodes_cb[0xb5] = function(){ // LDA ZPX
 }
 
 opcodes_cb[0xb6] = function(){ // LDX ZPY
-    GLOBAL(cpu6502).regX = mem_rd( fetch_byte() + GLOBAL(cpu6502).regY );
+    GLOBAL(cpu6502).regX = mem_rd(fetch_byte() + GLOBAL(cpu6502).regY );
     flag_zero(GLOBAL(cpu6502).regX==0)
     flag_sign(GLOBAL(cpu6502).regX&0x80)
 }
@@ -786,12 +786,12 @@ opcodes_cb[0xc1] = function(){ // CMP INDY
 }
 
 opcodes_cb[0xc4] = function(){ // CPY ZP
-    var value = mem_rd( fetch_byte() );
+    var value = mem_rd(fetch_byte());
     doCompare( GLOBAL(cpu6502).regY, value );
 }
 
 opcodes_cb[0xc5] = function(){ // CMP ZP
-    var value = mem_rd( fetch_byte() );
+    var value = mem_rd(fetch_byte());
     doCompare( GLOBAL(cpu6502).regA, value );
 }
 
@@ -857,7 +857,7 @@ opcodes_cb[0xd1] = function(){ // CMP INDY
 
 
 opcodes_cb[0xd5] = function(){ // CMP ZPX
-    var value = mem_rd( fetch_byte() + GLOBAL(cpu6502).regX );
+    var value = mem_rd(fetch_byte() + GLOBAL(cpu6502).regX );
     doCompare( GLOBAL(cpu6502).regA, value );
 }
 
@@ -911,7 +911,7 @@ opcodes_cb[0xe1] = function(){ // SBC INDX
 }
 
 opcodes_cb[0xe4] = function(){ // CPX ZP
-    var value = mem_rd( fetch_byte() );
+    var value = mem_rd(fetch_byte());
     doCompare( GLOBAL(cpu6502).regX, value );
 }
 

@@ -136,4 +136,6 @@ textarea{
     white-space:pre;
     resize:none;
     border:1px solid black;
+    background:#020;
+    color:lightgreen;
 }

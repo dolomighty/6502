@@ -2,6 +2,10 @@
 function gui_start(){
     $("assembla").addEventListener("click",assembla)
     $("ex").addEventListener("change",load_ex)
+    
+    const bt = $("out_clear")
+    bt.addEventListener("click",function(){ $("out").value="" })
+
     draggables_init()
     setInterval(function(){
         var a = 0xff & GLOBAL(cpu6502).regA

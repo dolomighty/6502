@@ -49,7 +49,7 @@ ispirato da 6502asm.com<br>
 <div id=stdout class=draggable>
   <div class=handle>
     stdout
-    <button onclick="$('out').value=''">cancella</button>
+    <button type=button id=out_clear>cancella</button>
   </div>
   <div id=out_div>
     <textarea id=out readonly></textarea>
